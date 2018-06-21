@@ -1,0 +1,13 @@
+.jumbotron{
+    height: 25  0px;
+    background:#81D4FA;  
+}
+
+.card{
+    width:400px;
+    position: relative;     
+}
+
+.card-img-bottom{
+    width: 100%;
+}
