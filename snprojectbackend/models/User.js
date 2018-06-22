@@ -1,14 +1,15 @@
-var Schema = mongoose.Schema;
+const config = require('./../config');
+const userSchema = require('./../schema/UserSchema')
+var user = new Object;
 
-var userSchema = new Schema({
-    name: String,
-    pass: String,
-    mail: String,
-    theme: String,
-    created: Date,
-    access: Date,
-    status: Boolean
-});
-
-var User = mongoose.model('User', userSchema);
-module.exports = User;
+user.createNewUser = function(req,response){
+    var userModel = config.mongoose.model('User', userSchema);
+    var userObject = new userModel({
+        name: req.body.name
+    });
+    userObject.save();
+    response.json(userObject)
+    //var userObj = new userModel(user);
+    //userObj.save();
+}
+module.exports = user;

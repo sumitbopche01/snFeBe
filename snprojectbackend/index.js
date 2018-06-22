@@ -1,12 +1,11 @@
-const express = require('express')
-const app = express()
-var Mongo = require('./engine/Mongo');
+const config = require('./config');
+var bodyParser = require('body-parser')
+const User = require('./models/User');
+config.log.info("Configuration Started");
 
-let db = new Mongo.Mongo();
+config.app.use(bodyParser.urlencoded({extended: false}));
+config.app.use(bodyParser.json());
 
-console.log(db.mongoose);
-app.get('/', (req, res) => res.send('Hello World!'))
-
-app.listen(3000, () => console.log('Example app listening on port 3000!'));
-
-
+config.app.get('/', (req, res) => res.send('Hello World!'))
+config.app.post('/admin/create/user',(req, res) => User.createNewUser(req,res));
+config.app.listen(3000, () => config.log.info('Example app listening on port 3000!'));
