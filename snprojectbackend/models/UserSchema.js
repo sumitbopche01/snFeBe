@@ -14,7 +14,7 @@ var userSchema = new Schema({
         type: String,
         required: [true, 'Name is required.'],
         validate: {
-            validator: (username) => name.length > 2,
+            validator: (username) => username.length > 2,
             message: 'Name must be longer than 2 characters.'
         },
         index: { unique: true }
